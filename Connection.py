@@ -1,16 +1,17 @@
 import cx_Oracle
 from flask import jsonify
 import sys
+import auth
 
 class Connection:
 
-	username = ""
-	password = ""
-	host = ""
-	port = ""
+	username = auth.username
+	password = auth.password
+	host = auth.host
+	port = auth.port
 
-	connection = None;
-	cursor = None;
+	connection = None
+	cursor = None
 
 	def connect(self):
 		self.connection = cx_Oracle.connect(self.username + "/" + self.password + "@//" + self.host + ":" + self.port, encoding='UTF-8')
