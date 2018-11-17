@@ -41,9 +41,11 @@ class Connection:
 		try:
 			self.cursor.execute(command)
 			data = self.cursor.fetchall()
+			columns = [i[0] for i in self.cursor.description]
 			result = {
 				"success": True,
-				"data": data
+				"data": data,
+				"columns": columns
 			}
 			self.close()
 			return result
