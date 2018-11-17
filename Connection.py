@@ -1,4 +1,6 @@
 import cx_Oracle
+from flask import jsonify
+import sys
 
 class Connection:
 
@@ -23,7 +25,9 @@ class Connection:
 		try:
 			self.cursor.execute(command)
 			self.connection.commit()
-			return {"success": True}
+			result = {"success": True}
+			self.close()
+			return result
 		except cx_Oracle.DatabaseError as e:
 			result = {
 				"success": False,
@@ -34,7 +38,19 @@ class Connection:
 
 	def query(self, command):
 		self.connect()
-		self.cursor.execute(command)
-		result = self.cursor.fetchall()
-		self.close()
-		return result
+		try:
+			self.cursor.execute(command)
+			data = self.cursor.fetchall()
+			result = {
+				"success": True,
+				"data": data
+			}
+			self.close()
+			return result
+		except cx_Oracle.DatabaseError as e:
+			result = {
+				"success": False,
+				"message": str(e)
+			}
+			self.close()
+			return result
