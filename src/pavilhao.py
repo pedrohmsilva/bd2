@@ -36,10 +36,7 @@ class ListarPavilhoes(Resource):
             resultado[i]['cep'] = resultado[i]['..cep']
             del resultado[i]['..cep']
 
-        return {
-            "success": True,
-            "data": resultado
-        }
+        return resultado
       
 class BuscarPavilhoes(Resource):
     def get(self):
@@ -88,10 +85,7 @@ class BuscarPavilhoes(Resource):
             r['cep'] = r['..cep']
         '''
 
-        return {
-            "success": True,
-            "data": resultado
-        }
+        return resultado
 
 class CriarPavilhoes(Resource):
     def post(self):
