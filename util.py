@@ -1,3 +1,5 @@
+import datetime
+
 class Util:
 	@staticmethod
 	def formatQuery(index, entidade):
@@ -6,7 +8,8 @@ class Util:
 			'endereco': ['tipo_logadouro', 'logradouro', 'numero', 'bairro', 'cidade', 'uf', 'cep'],
 			'pavilhao': ['numero', 'funcao'],
 			'bloco': ['numero', 'andar'],
-			'cela': ['codigo', 'capacidade', 'tipo']
+			'cela': ['codigo', 'capacidade', 'tipo'],
+			'servidor': ['cpf', 'rg', 'nome', 'data_nascimento', 'cargo', 'salario']
 		}
 
 		string = ''
@@ -25,7 +28,11 @@ class Util:
 			titulos[i] = titulos[i].lower()
 			for r in remove:
 				titulos[i] = titulos[i].replace(r, "")
-			resultado[titulos[i].lower()] = valores[i]
+			
+			if isinstance(valores[i], datetime.datetime):
+				resultado[titulos[i].lower()] = valores[i].__str__()
+			else:
+				resultado[titulos[i].lower()] = valores[i]
 
 		return resultado
 
