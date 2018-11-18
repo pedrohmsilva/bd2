@@ -74,3 +74,40 @@ class CriarBlocos(Resource):
         )
 
 		return conn.update(command)
+
+class AlterarBlocos(Resource):
+	def post(self):
+		conn = Connection()
+
+		numero_bloco = str(request.json['numero'])
+		numero_pavilhao = str(request.json['fk_numero_pavilhao'])
+		codigo_unidade = str(request.json['fk_codigo_unidade'])
+		andar = str(request.json['andar'])
+
+		command = (
+			"update blocos b set " +
+				"b.andar = " + andar +
+			" where " +
+				"b.numero = " + numero_bloco + " and " +
+				"b.pavilhao.numero = " + numero_pavilhao + " and " +
+				"b.pavilhao.unidade_prisional.codigo = " + codigo_unidade
+		)
+
+		return conn.update(command)
+
+class RemoverBlocos(Resource):
+	def post(self):
+		conn = Connection()
+
+		numero_bloco = str(request.json['numero'])
+		numero_pavilhao = str(request.json['fk_numero_pavilhao'])
+		codigo_unidade = str(request.json['fk_codigo_unidade'])
+
+		command = (
+			"delete from blocos b where" +
+			" b.numero = " + numero_bloco + " and"
+			" b.pavilhao.numero = " + numero_pavilhao + " and"
+			" b.pavilhao.unidade_prisional.codigo = " + codigo_unidade
+		)
+
+		return conn.update(command)
