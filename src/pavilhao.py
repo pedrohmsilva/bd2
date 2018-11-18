@@ -28,10 +28,6 @@ class ListarPavilhoes(Resource):
             del resultado[i]['..uf']
             del resultado[i]['..cep']
 
-        # return {
-        #     "success": True,
-        #     "data": resultado
-        # }
         return resultado
 
 class BuscarPavilhoes(Resource):
@@ -81,10 +77,7 @@ class BuscarPavilhoes(Resource):
             r['cep'] = r['..cep']
         '''
 
-        return {
-            "success": True,
-            "data": resultado
-        }
+        return resultado
 
 class CriarPavilhoes(Resource):
     def post(self):

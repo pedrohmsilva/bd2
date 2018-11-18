@@ -4,7 +4,8 @@ class Util:
 		entidades = {
 			'up': ['codigo', 'nome'],
 			'endereco': ['tipo_logadouro', 'logradouro', 'numero', 'bairro', 'cidade', 'uf', 'cep'],
-			'pavilhao': ['numero', 'funcao']
+			'pavilhao': ['numero', 'funcao'],
+			'bloco': ['numero', 'andar']
 		}
 
 		string = ''
@@ -14,6 +15,7 @@ class Util:
 
 		string = string[:-2]
 		return string
+
 	@staticmethod
 	def formatResponse(valores, titulos, remove):
 		resultado = {}
@@ -25,3 +27,7 @@ class Util:
 			resultado[titulos[i].lower()] = valores[i]
 
 		return resultado
+
+	@staticmethod
+	def formatString(valor):
+		return "'" + valor + "'"
