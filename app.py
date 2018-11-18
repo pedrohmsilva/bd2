@@ -1,11 +1,13 @@
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
+from flask_cors import CORS
 
 import src.unidade_prisional as unidade_prisional
 from src.pavilhao import ListarPavilhoes, BuscarPavilhoes, CriarPavilhoes, AlterarPavilhoes, RemoverPavilhoes
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 class Index(Resource):
 	def get(self):
