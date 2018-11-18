@@ -9,7 +9,7 @@ from util import Util
 app = Flask(__name__)
 api = Api(app)
 
-class Listar(Resource):
+class ListarUnidades(Resource):
 
 	def get(self):
 		conn = Connection()
@@ -27,7 +27,7 @@ class Listar(Resource):
 			"data": resultado
 		}
 
-class Buscar(Resource):
+class BuscarUnidades(Resource):
 
 	def get(self, codigo):
 		conn = Connection()
