@@ -17,27 +17,19 @@ class ListarPavilhoes(Resource):
         resultado = []
         for i in range(len(pavilhoes['data'])):
             resultado.append(Util.formatResponse(pavilhoes['data'][i], pavilhoes['columns'], ['unidade_prisional','endereco']))
-            resultado[i]['codigo_unidade'] = resultado[i]['.codigo']
+            resultado[i]['fk_unid_prisional'] = resultado[i]['.codigo']
             del resultado[i]['.codigo']
-            resultado[i]['nome_unidade'] = resultado[i]['.nome']
             del resultado[i]['.nome']
-            resultado[i]['tipo_logradouro'] = resultado[i]['..tipo_logadouro']
             del resultado[i]['..tipo_logadouro']
-            resultado[i]['logradouro'] = resultado[i]['..logradouro']
             del resultado[i]['..logradouro']
-            resultado[i]['num'] = resultado[i]['..numero']
             del resultado[i]['..numero']
-            resultado[i]['bairro'] = resultado[i]['..bairro']
             del resultado[i]['..bairro']
-            resultado[i]['cidade'] = resultado[i]['..cidade']
             del resultado[i]['..cidade']
-            resultado[i]['uf'] = resultado[i]['..uf']
             del resultado[i]['..uf']
-            resultado[i]['cep'] = resultado[i]['..cep']
             del resultado[i]['..cep']
 
         return resultado
-      
+
 class BuscarPavilhoes(Resource):
     def get(self):
         conn = Connection()

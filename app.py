@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
+from flask_cors import CORS
 
 from src.unidade_prisional import ListarUnidades, BuscarUnidades, CriarUnidades, AlterarUnidades, RemoverUnidades
 from src.pavilhao import ListarPavilhoes, BuscarPavilhoes, CriarPavilhoes, AlterarPavilhoes, RemoverPavilhoes
@@ -7,6 +8,7 @@ from src.bloco import ListarBlocos, BuscarBlocos, CriarBlocos
 
 app = Flask(__name__)
 api = Api(app)
+CORS(app)
 
 class Index(Resource):
 	def get(self):
