@@ -30,6 +30,7 @@ class Listar(Resource):
 class Buscar(Resource):
 
 	def get(self, codigo):
-		conn = Connection()
-		unidade = conn.formatQuery("select * from " + table + " where codigo = " + codigo)
+		#conn = Connection()
+		# unidade = conn.formatQuery("select * from " + table + " where codigo = " + codigo)
+		unidade = ''
 		return unidade

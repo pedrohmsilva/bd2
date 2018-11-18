@@ -1,8 +1,10 @@
 class Util:
+	@staticmethod
 	def formatQuery(index, entidade):
 		entidades = {
 			'up': ['codigo', 'nome'],
-			'endereco': ['tipo_logadouro', 'logradouro', 'numero', 'bairro', 'cidade', 'uf', 'cep']
+			'endereco': ['tipo_logadouro', 'logradouro', 'numero', 'bairro', 'cidade', 'uf', 'cep'],
+			'pavilhao': ['numero', 'funcao']
 		}
 
 		string = ''
@@ -12,7 +14,7 @@ class Util:
 
 		string = string[:-2]
 		return string
-
+	@staticmethod
 	def formatResponse(valores, titulos, remove):
 		resultado = {}
 
