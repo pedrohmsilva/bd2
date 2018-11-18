@@ -9,7 +9,7 @@ from util import Util
 app = Flask(__name__)
 api = Api(app)
 
-class Listar(Resource):
+class ListarUnidades(Resource):
 
 	def get(self):
 		conn = Connection()
@@ -27,10 +27,20 @@ class Listar(Resource):
 			"data": resultado
 		}
 
-class Buscar(Resource):
+class BuscarUnidades(Resource):
 
 	def get(self, codigo):
-		#conn = Connection()
-		# unidade = conn.formatQuery("select * from " + table + " where codigo = " + codigo)
-		unidade = ''
-		return unidade
+		conn = Connection()
+		unidade = conn.query("select " + Util.formatQuery('up', 'up') + ", " + Util.formatQuery('up.endereco', 'endereco') + " from unidades_prisionais up where codigo = " + str(codigo))
+
+		if(unidade['success'] == False):
+			return unidade
+
+		resultado = []
+		for data in unidade['data']:
+			resultado.append(Util.formatResponse(data, unidade['columns'], ['endereco.']))
+		
+		return {
+			"success": True,
+			"data": resultado
+		}
