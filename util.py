@@ -5,7 +5,8 @@ class Util:
 			'up': ['codigo', 'nome'],
 			'endereco': ['tipo_logadouro', 'logradouro', 'numero', 'bairro', 'cidade', 'uf', 'cep'],
 			'pavilhao': ['numero', 'funcao'],
-			'bloco': ['numero', 'andar']
+			'bloco': ['numero', 'andar'],
+			'cela': ['codigo', 'capacidade', 'tipo']
 		}
 
 		string = ''

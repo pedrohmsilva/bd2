@@ -5,6 +5,7 @@ from flask_cors import CORS
 from src.unidade_prisional import ListarUnidades, BuscarUnidades, CriarUnidades, AlterarUnidades, RemoverUnidades
 from src.pavilhao import ListarPavilhoes, BuscarPavilhoes, CriarPavilhoes, AlterarPavilhoes, RemoverPavilhoes
 from src.bloco import ListarBlocos, BuscarBlocos, CriarBlocos, AlterarBlocos, RemoverBlocos
+from src.cela import ListarCelas, BuscarCelas, CriarCelas, AlterarCelas, RemoverCelas
 
 app = Flask(__name__)
 api = Api(app)
@@ -26,6 +27,12 @@ api.add_resource(BuscarBlocos, '/blocos/buscar')
 api.add_resource(CriarBlocos, '/blocos/criar')
 api.add_resource(AlterarBlocos, '/blocos/alterar')
 api.add_resource(RemoverBlocos, '/blocos/remover')
+
+api.add_resource(ListarCelas, '/celas/listar')
+api.add_resource(BuscarCelas, '/celas/buscar')
+api.add_resource(CriarCelas, '/celas/criar')
+api.add_resource(AlterarCelas, '/celas/alterar')
+api.add_resource(RemoverCelas, '/celas/remover')
 
 api.add_resource(ListarPavilhoes, '/pavilhoes/listar')
 api.add_resource(BuscarPavilhoes, '/pavilhoes/buscar')
