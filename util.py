@@ -14,6 +14,7 @@ class Util:
 
 		string = string[:-2]
 		return string
+
 	@staticmethod
 	def formatResponse(valores, titulos, remove):
 		resultado = {}
@@ -25,3 +26,7 @@ class Util:
 			resultado[titulos[i].lower()] = valores[i]
 
 		return resultado
+
+	@staticmethod
+	def formatString(valor):
+		return "'" + valor + "'"
