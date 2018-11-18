@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 
 from src.unidade_prisional import ListarUnidades, BuscarUnidades, CriarUnidades, AlterarUnidades, RemoverUnidades
 from src.pavilhao import ListarPavilhoes, BuscarPavilhoes, CriarPavilhoes, AlterarPavilhoes, RemoverPavilhoes
+from src.bloco import ListarBlocos, BuscarBlocos, CriarBlocos
 
 app = Flask(__name__)
 api = Api(app)
@@ -17,6 +18,10 @@ api.add_resource(BuscarUnidades, '/unidades/buscar/<int:codigo>')
 api.add_resource(CriarUnidades, '/unidades/criar')
 api.add_resource(AlterarUnidades, '/unidades/alterar')
 api.add_resource(RemoverUnidades, '/unidades/remover')
+
+api.add_resource(ListarBlocos, '/blocos/listar')
+api.add_resource(BuscarBlocos, '/blocos/buscar')
+api.add_resource(CriarBlocos, '/blocos/criar')
 
 api.add_resource(ListarPavilhoes, '/pavilhoes/listar')
 api.add_resource(BuscarPavilhoes, '/pavilhoes/buscar')

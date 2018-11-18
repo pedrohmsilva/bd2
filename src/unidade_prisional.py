@@ -16,16 +16,13 @@ class ListarUnidades(Resource):
 		unidades = conn.query("select " + Util.formatQuery('up', 'up') + ", " + Util.formatQuery('up.endereco', 'endereco') + " from unidades_prisionais up")
 
 		if (unidades['success'] == False):
-			return unidades
+			return unidade
 
 		resultado = []
 		for data in unidades['data']:
 			resultado.append(Util.formatResponse(data, unidades['columns'], ['endereco.']))
 		
-		return {
-			"success": True,
-			"data": resultado
-		}
+		return resultado
 
 class BuscarUnidades(Resource):
 
@@ -40,10 +37,7 @@ class BuscarUnidades(Resource):
 		for data in unidade['data']:
 			resultado.append(Util.formatResponse(data, unidade['columns'], ['endereco.']))
 		
-		return {
-			"success": True,
-			"data": resultado
-		}
+		return resultado
 
 class CriarUnidades(Resource):
 

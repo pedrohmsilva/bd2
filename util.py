@@ -4,7 +4,8 @@ class Util:
 		entidades = {
 			'up': ['codigo', 'nome'],
 			'endereco': ['tipo_logadouro', 'logradouro', 'numero', 'bairro', 'cidade', 'uf', 'cep'],
-			'pavilhao': ['numero', 'funcao']
+			'pavilhao': ['numero', 'funcao'],
+			'bloco': ['numero', 'andar']
 		}
 
 		string = ''
