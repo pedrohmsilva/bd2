@@ -56,7 +56,7 @@ class BuscarCelas(Resource):
 
 		resultado = []
 		for data in celas['data']:
-			resultado.append(Util.formatResponse(data, celas['columns'], ['blcoo', 'pavilhao', 'unidade_prisional', 'endereco']))
+			resultado.append(Util.formatResponse(data, celas['columns'], ['bloco', 'pavilhao', 'unidade_prisional', 'endereco']))
 
 		return resultado
 
