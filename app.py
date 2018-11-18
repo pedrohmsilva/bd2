@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
 
-from src.unidade_prisional import ListarUnidades, BuscarUnidades
+from src.unidade_prisional import ListarUnidades, BuscarUnidades, CriarUnidades, AlterarUnidades, RemoverUnidades
 from src.pavilhao import ListarPavilhoes, BuscarPavilhoes, CriarPavilhoes, AlterarPavilhoes, RemoverPavilhoes
 
 app = Flask(__name__)
@@ -14,6 +14,10 @@ class Index(Resource):
 api.add_resource(Index, '/')
 api.add_resource(ListarUnidades, '/unidades/listar')
 api.add_resource(BuscarUnidades, '/unidades/buscar/<int:codigo>')
+api.add_resource(CriarUnidades, '/unidades/criar')
+api.add_resource(AlterarUnidades, '/unidades/alterar')
+api.add_resource(RemoverUnidades, '/unidades/remover')
+
 api.add_resource(ListarPavilhoes, '/pavilhoes/listar')
 api.add_resource(BuscarPavilhoes, '/pavilhoes/buscar')
 api.add_resource(CriarPavilhoes, '/pavilhoes/criar')
