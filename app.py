@@ -48,11 +48,11 @@ api.add_resource(CriarServidores, '/servidores/criar')
 api.add_resource(AlterarServidores, '/servidores/alterar')
 api.add_resource(RemoverServidores, '/servidores/remover')
 
-api.add_resource(ListarCrimes, '/crimes/listar')
-api.add_resource(BuscarCrimes, '/crimes/buscar')
-api.add_resource(CriarCrimes, '/crimes/criar')
-api.add_resource(AlterarCrimes, '/crimes/alterar')
-api.add_resource(RemoverCrimes, '/crimes/remover')
+api.add_resource(ListarCrimes, '/penas/listar')
+api.add_resource(BuscarCrimes, '/penas/buscar')
+api.add_resource(CriarCrimes, '/penas/criar')
+api.add_resource(AlterarCrimes, '/penas/alterar')
+api.add_resource(RemoverCrimes, '/penas/remover')
 
 if __name__ == "__main__":
 	app.run(debug=True)
