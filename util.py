@@ -9,7 +9,8 @@ class Util:
 			'pavilhao': ['numero', 'funcao'],
 			'bloco': ['numero', 'andar'],
 			'cela': ['codigo', 'capacidade', 'tipo'],
-			'servidor': ['cpf', 'rg', 'nome', 'data_nascimento', 'cargo', 'salario']
+			'servidor': ['cpf', 'rg', 'nome', 'data_nascimento', 'cargo', 'salario'],
+			'crime': ['codigo_penal', 'area_penal', 'descricao', 'pena_unidade', 'pena_minima', 'pena_maxima']
 		}
 
 		string = ''
