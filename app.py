@@ -7,6 +7,7 @@ from src.pavilhao import ListarPavilhoes, BuscarPavilhoes, CriarPavilhoes, Alter
 from src.bloco import ListarBlocos, BuscarBlocos, CriarBlocos, AlterarBlocos, RemoverBlocos
 from src.cela import ListarCelas, BuscarCelas, CriarCelas, AlterarCelas, RemoverCelas
 from src.servidor import ListarServidores, BuscarServidores, CriarServidores, AlterarServidores, RemoverServidores
+from src.crime import ListarCrimes, BuscarCrimes, CriarCrimes, AlterarCrimes, RemoverCrimes
 
 app = Flask(__name__)
 api = Api(app)
@@ -46,6 +47,12 @@ api.add_resource(BuscarServidores, '/servidores/buscar')
 api.add_resource(CriarServidores, '/servidores/criar')
 api.add_resource(AlterarServidores, '/servidores/alterar')
 api.add_resource(RemoverServidores, '/servidores/remover')
+
+api.add_resource(ListarCrimes, '/crimes/listar')
+api.add_resource(BuscarCrimes, '/crimes/buscar')
+api.add_resource(CriarCrimes, '/crimes/criar')
+api.add_resource(AlterarCrimes, '/crimes/alterar')
+api.add_resource(RemoverCrimes, '/crimes/remover')
 
 if __name__ == "__main__":
 	app.run(debug=True)
