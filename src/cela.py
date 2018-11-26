@@ -163,3 +163,31 @@ class RemoverCelas(Resource):
 
 		return conn.update(command)
 
+class ListarCelasPrisioneiros(Resource):
+	def get(self):
+		conn = Connection()
+
+		codigo_unidade = str(request.args['fk_codigo_unidade'])
+		numero_pavilhao = str(request.args['fk_numero_pavilhao'])
+		numero_bloco = str(request.args['fk_numero_bloco'])
+		codigo_cela = str(request.args['codigo'])
+
+		command = (
+			"select " + Util.formatQuery("p", "prisioneiro") +
+			" from prisioneiros p" +
+			" where p.cela =" +
+			" (select ref(c) from celas c where c.codigo = " + codigo_cela
+			 + ")"
+		)
+
+		prisioneiros = conn.query(command)
+
+		if (prisioneiros['success'] == False):
+			return prisioneiros
+
+		resultado = []
+		for data in prisioneiros['data']:
+			resultado.append(Util.formatResponse(data, prisioneiros['columns'], []))
+
+		return resultado
+
