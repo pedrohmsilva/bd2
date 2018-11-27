@@ -16,7 +16,7 @@ class ListarUnidades(Resource):
 		unidades = conn.query("select " + Util.formatQuery('up', 'up') + ", " + Util.formatQuery('up.endereco', 'endereco') + " from unidades_prisionais up")
 
 		if (unidades['success'] == False):
-			return unidade
+			return unidades
 
 		resultado = []
 		for data in unidades['data']:
@@ -49,9 +49,9 @@ class CriarUnidades(Resource):
 		unidade['nome'] = "'" + request.json['nome'] + "'"
 
 		endereco = {}
-		endereco['tipo_logadouro'] = "'" + request.json['tipo_logadouro'] + "'"
+		endereco['tipo_logadouro'] = "'" + request.json['tipo_logradouro'] + "'"
 		endereco['logradouro'] = "'" + request.json['logradouro'] + "'"
-		endereco['numero'] = "'" + request.json['numero'] + "'"
+		endereco['numero'] = "'" + request.json['num'] + "'"
 		endereco['bairro'] = "'" + request.json['bairro'] + "'"
 		endereco['cidade'] = "'" + request.json['cidade'] + "'"
 		endereco['uf'] = "'" + request.json['uf'] + "'"
@@ -85,9 +85,9 @@ class AlterarUnidades(Resource):
 		unidade = {}
 		unidade['codigo'] = str(request.json['codigo'])
 		unidade['nome'] = Util.formatString(request.json['nome'])
-		unidade['tipo_logadouro'] = Util.formatString(request.json['tipo_logadouro'])
+		unidade['tipo_logadouro'] = Util.formatString(request.json['tipo_logradouro'])
 		unidade['logradouro'] = Util.formatString(request.json['logradouro'])
-		unidade['numero'] = Util.formatString(request.json['numero'])
+		unidade['numero'] = Util.formatString(request.json['num'])
 		unidade['bairro'] = Util.formatString(request.json['bairro'])
 		unidade['cidade'] = Util.formatString(request.json['cidade'])
 		unidade['uf'] = Util.formatString(request.json['uf'])
