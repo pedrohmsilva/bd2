@@ -10,7 +10,9 @@ class Util:
 			'bloco': ['numero', 'andar'],
 			'cela': ['codigo', 'capacidade', 'tipo'],
 			'servidor': ['cpf', 'rg', 'nome', 'data_nascimento', 'cargo', 'salario'],
-			'crime': ['codigo_penal', 'area_penal', 'descricao', 'pena_unidade', 'pena_minima', 'pena_maxima']
+			'crime': ['codigo_penal', 'area_penal', 'descricao', 'pena_unidade', 'pena_minima', 'pena_maxima'],
+			'prisioneiro': ['cpf', 'rg', 'nome', 'data_nascimento'],
+			'familiar': ['cpf', 'rg', 'nome', 'data_nascimento', 'parentesco']
 		}
 
 		string = ''
