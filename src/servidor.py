@@ -25,6 +25,27 @@ class ListarServidores(Resource):
 		for data in servidores['data']:
 			resultado.append(Util.formatResponse(data, servidores['columns'], ['unidade_prisional', 'endereco']))
 
+		for i in range(len(resultado)):
+			resultado[i]['codigo_unidade'] = resultado[i]['.codigo']
+			resultado[i]['nome_unidade'] = resultado[i]['.nome']
+			resultado[i]['tipo_logradouro'] = resultado[i]['..tipo_logadouro']
+			resultado[i]['logradouro'] = resultado[i]['..logradouro']
+			resultado[i]['num'] = resultado[i]['..numero']
+			resultado[i]['bairro'] = resultado[i]['..bairro']
+			resultado[i]['cidade'] = resultado[i]['..cidade']
+			resultado[i]['uf'] = resultado[i]['..uf']
+			resultado[i]['cep'] = resultado[i]['..cep']
+
+			del resultado[i]['.codigo']
+			del resultado[i]['.nome']
+			del resultado[i]['..tipo_logadouro']
+			del resultado[i]['..logradouro']
+			del resultado[i]['..numero']
+			del resultado[i]['..bairro']
+			del resultado[i]['..cidade']
+			del resultado[i]['..uf']
+			del resultado[i]['..cep']
+
 		return resultado
 
 class BuscarServidores(Resource):
