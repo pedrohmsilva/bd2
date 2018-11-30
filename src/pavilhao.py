@@ -33,8 +33,8 @@ class ListarPavilhoes(Resource):
 class BuscarPavilhoes(Resource):
     def get(self):
         conn = Connection()
-        numero = request.args['numero']
-        unidade_prisional = request.args['fk_unidade_prisional']
+        numero = str(request.args['numero'])
+        unidade_prisional = str(request.args['fk_unidade_prisional'])
         pavilhoes = conn.query("select " + Util.formatQuery('p', 'pavilhao') + ", " 
         + Util.formatQuery('p.unidade_prisional', 'up') + ", " + Util.formatQuery('p.unidade_prisional.endereco', 'endereco') 
         + " from pavilhoes p where p.numero = " + numero + "and p.unidade_prisional.codigo = " + unidade_prisional)
@@ -82,9 +82,9 @@ class BuscarPavilhoes(Resource):
 class CriarPavilhoes(Resource):
     def post(self):
         conn = Connection()
-        numero = request.args['numero']
-        unidade_prisional = request.args['fk_unid_prisional']
-        funcao = request.args['funcao']
+        numero = str(request.json['numero'])
+        unidade_prisional = str(request.json['fk_unid_prisional'])
+        funcao = Util.formatString(request.json['funcao'])
 
         res = conn.update("insert into pavilhoes values((select ref(unid) from unidades_prisionais unid where unid.codigo = " 
         + unidade_prisional + "), " + numero + ", " + funcao + ")")
@@ -94,9 +94,9 @@ class CriarPavilhoes(Resource):
 class AlterarPavilhoes(Resource):
     def post(self):
         conn = Connection()
-        numero = request.args['numero']
-        unidade_prisional = request.args['fk_unid_prisional']
-        funcao = request.args['funcao']
+        numero = str(request.json['numero'])
+        unidade_prisional = str(request.json['fk_unid_prisional'])
+        funcao = Util.formatString(request.json['funcao'])
 
         res = conn.update("update pavilhoes p set funcao = " + funcao + 
         " where p.numero = " + numero + " and p.unidade_prisional.codigo = " + unidade_prisional)
@@ -106,8 +106,8 @@ class AlterarPavilhoes(Resource):
 class RemoverPavilhoes(Resource):
     def post(self):
         conn = Connection()
-        numero = request.args['numero']
-        unidade_prisional = request.args['fk_unid_prisional']
+        numero = str(request.json['numero'])
+        unidade_prisional = str(request.json['fk_unid_prisional'])
 
         res = conn.update("delete from pavilhoes p where p.numero = " + numero 
         + " and p.unidade_prisional.codigo = " + unidade_prisional) 
