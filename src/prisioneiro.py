@@ -223,10 +223,10 @@ class AlterarPrisioneiros(Resource):
 		
 		command = (
 			"update prisioneiros set " +
-				"rg = " + rg + ", "
-				"nome = " + nome + ", "
-				"data_nascimento = " + data_nascimento + ", "
-				"cela = (select ref(c) from celas c where c.codigo = " + cela + ")
+				"rg = " + rg + ", " +
+				"nome = " + nome + ", " +
+				"data_nascimento = " + data_nascimento + ", " +
+				"cela = (select ref(c) from celas c where c.codigo = " + cela + ")"
         )
 
 		if (len(observacoes_string) > 0):
@@ -234,7 +234,7 @@ class AlterarPrisioneiros(Resource):
 				"observacoes_medicas = " + observacoes_string)
 		
 		if (len(familiares_string) > 0):
-			command = command + ", " +
+			command = (command + ", " +
 				"familiares = " + familiares_string)
 
 		return conn.update(command)
