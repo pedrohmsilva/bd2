@@ -21,7 +21,7 @@ class Index(Resource):
 
 api.add_resource(Index, '/')
 api.add_resource(ListarUnidades, '/unidades/listar')
-api.add_resource(BuscarUnidades, '/unidades/buscar/<int:codigo>')
+api.add_resource(BuscarUnidades, '/unidades/buscar')
 api.add_resource(CriarUnidades, '/unidades/criar')
 api.add_resource(AlterarUnidades, '/unidades/alterar')
 api.add_resource(RemoverUnidades, '/unidades/remover')

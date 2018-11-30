@@ -21,14 +21,21 @@ class ListarUnidades(Resource):
 		resultado = []
 		for data in unidades['data']:
 			resultado.append(Util.formatResponse(data, unidades['columns'], ['endereco.']))
+
+		for i in range(len(resultado)):
+			resultado[i]['num'] = resultado[i]['numero']
+			del resultado[i]['numero']
 		
 		return resultado
 
 class BuscarUnidades(Resource):
 
-	def get(self, codigo):
+	def get(self):
 		conn = Connection()
-		unidade = conn.query("select " + Util.formatQuery('up', 'up') + ", " + Util.formatQuery('up.endereco', 'endereco') + " from unidades_prisionais up where codigo = " + str(codigo))
+
+		codigo = str(request.args['codigo'])
+
+		unidade = conn.query("select " + Util.formatQuery('up', 'up') + ", " + Util.formatQuery('up.endereco', 'endereco') + " from unidades_prisionais up where codigo = " + codigo)
 
 		if(unidade['success'] == False):
 			return unidade
@@ -36,6 +43,10 @@ class BuscarUnidades(Resource):
 		resultado = []
 		for data in unidade['data']:
 			resultado.append(Util.formatResponse(data, unidade['columns'], ['endereco.']))
+		
+		for i in range(len(resultado)):
+			resultado[i]['num'] = resultado[i]['numero']
+			del resultado[i]['numero']
 		
 		return resultado
 
