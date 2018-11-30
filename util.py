@@ -12,7 +12,8 @@ class Util:
 			'servidor': ['cpf', 'rg', 'nome', 'data_nascimento', 'cargo', 'salario'],
 			'crime': ['codigo_penal', 'area_penal', 'descricao', 'pena_unidade', 'pena_minima', 'pena_maxima'],
 			'prisioneiro': ['cpf', 'rg', 'nome', 'data_nascimento'],
-			'familiar': ['cpf', 'rg', 'nome', 'data_nascimento', 'parentesco']
+			'familiar': ['cpf', 'rg', 'nome', 'data_nascimento', 'parentesco'],
+			'cumprimento_pena': ['codigo', 'data_inicio', 'data_termino']
 		}
 
 		string = ''

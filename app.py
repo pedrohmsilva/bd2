@@ -9,6 +9,7 @@ from src.cela import ListarCelas, BuscarCelas, CriarCelas, AlterarCelas, Remover
 from src.servidor import ListarServidores, BuscarServidores, CriarServidores, AlterarServidores, RemoverServidores
 from src.crime import ListarCrimes, BuscarCrimes, CriarCrimes, AlterarCrimes, RemoverCrimes
 from src.prisioneiro import ListarPrisioneiros, BuscarPrisioneiros, CriarPrisioneiros, AlterarPrisioneiros, RemoverPrisioneiros
+from src.cumprimento_pena import ListarCumprimentoPenas, CriarCumprimentoPenas, BuscarCumprimentoPenas, RemoverCumprimentoPenas
 
 app = Flask(__name__)
 api = Api(app)
@@ -61,6 +62,11 @@ api.add_resource(BuscarPrisioneiros, '/prisioneiros/buscar')
 api.add_resource(CriarPrisioneiros, '/prisioneiros/criar')
 api.add_resource(AlterarPrisioneiros, '/prisioneiros/alterar')
 api.add_resource(RemoverPrisioneiros, '/prisioneiros/remover')
+
+api.add_resource(ListarCumprimentoPenas, '/cumprimento_penas/listar')
+api.add_resource(BuscarCumprimentoPenas, '/cumprimento_penas/buscar')
+api.add_resource(CriarCumprimentoPenas, '/cumprimento_penas/criar')
+api.add_resource(RemoverCumprimentoPenas, '/cumprimento_penas/remover')
 
 if __name__ == "__main__":
 	app.run(debug=True)
