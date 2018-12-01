@@ -95,7 +95,7 @@ class AlterarPavilhoes(Resource):
     def post(self):
         conn = Connection()
         numero = str(request.json['numero'])
-        unidade_prisional = str(request.json['fk_unid_prisional'])
+        unidade_prisional = str(request.json['codigo_unidade'])
         funcao = Util.formatString(request.json['funcao'])
 
         res = conn.update("update pavilhoes p set funcao = " + funcao + 
@@ -107,7 +107,7 @@ class RemoverPavilhoes(Resource):
     def post(self):
         conn = Connection()
         numero = str(request.json['numero'])
-        unidade_prisional = str(request.json['fk_unid_prisional'])
+        unidade_prisional = str(request.json['codigo_unidade'])
 
         res = conn.update("delete from pavilhoes p where p.numero = " + numero 
         + " and p.unidade_prisional.codigo = " + unidade_prisional) 
