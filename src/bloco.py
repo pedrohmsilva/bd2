@@ -133,7 +133,7 @@ class AlterarBlocos(Resource):
 
 		numero_bloco = str(request.json['numero'])
 		numero_pavilhao = str(request.json['fk_numero_pavilhao'])
-		codigo_unidade = str(request.json['fk_codigo_unidade'])
+		codigo_unidade = str(request.json['codigo_unidade'])
 		andar = str(request.json['andar'])
 
 		command = (
@@ -153,7 +153,7 @@ class RemoverBlocos(Resource):
 
 		numero_bloco = str(request.json['numero'])
 		numero_pavilhao = str(request.json['fk_numero_pavilhao'])
-		codigo_unidade = str(request.json['fk_codigo_unidade'])
+		codigo_unidade = str(request.json['codigo_unidade'])
 
 		command = (
 			"delete from blocos b where" +
