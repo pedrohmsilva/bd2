@@ -62,9 +62,6 @@ class BuscarCelas(Resource):
 	def get(self):
 		conn = Connection()
 
-		codigo_unidade = str(request.args['fk_codigo_unidade'])
-		numero_pavilhao = str(request.args['fk_numero_pavilhao'])
-		numero_bloco = str(request.args['fk_numero_bloco'])
 		codigo_cela = str(request.args['codigo'])
 
 		command = ("select " + Util.formatQuery('c', 'cela') + ", " + Util.formatQuery('c.bloco', 'bloco') + ", " +
@@ -72,9 +69,6 @@ class BuscarCelas(Resource):
 			Util.formatQuery('c.bloco.pavilhao.unidade_prisional', 'up') + ", " +
 			Util.formatQuery('c.bloco.pavilhao.unidade_prisional.endereco', 'endereco') +
 			" from celas c where " +
-				"c.bloco.pavilhao.unidade_prisional.codigo = " + codigo_unidade + " and " +
-				"c.bloco.pavilhao.numero = " + numero_pavilhao + " and " +
-				"c.bloco.numero = " + numero_bloco + " and " +
 				"c.codigo = " + codigo_cela
 		)
 
@@ -126,7 +120,7 @@ class CriarCelas(Resource):
 		conn = Connection()
 
 		try:
-			codigo_unidade = str(request.json['fk_codigo_unidade'])
+			codigo_unidade = str(request.json['codigo_unidade'])
 			numero_pavilhao = str(request.json['fk_numero_pavilhao'])
 			numero_bloco = str(request.json['fk_numero_bloco'])
 		except:
@@ -169,7 +163,7 @@ class AlterarCelas(Resource):
 			
 		codigo_cela = str(request.json['codigo'])
 
-		capacidade = str(request.json['capacidade'])
+		capacidade = str(request.json['quantidade_max'])
 		tipo = Util.formatString(request.json['tipo'])
 
 		command = (
