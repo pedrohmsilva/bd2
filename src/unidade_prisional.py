@@ -96,7 +96,7 @@ class AlterarUnidades(Resource):
 		unidade = {}
 		unidade['codigo'] = str(request.json['codigo'])
 		unidade['nome'] = Util.formatString(request.json['nome'])
-		unidade['tipo_logradouro'] = Util.formatString(request.json['tipo_logradouro'])
+		unidade['tipo_logadouro'] = Util.formatString(request.json['tipo_logradouro'])
 		unidade['logradouro'] = Util.formatString(request.json['logradouro'])
 		unidade['numero'] = Util.formatString(request.json['numero'])
 		unidade['bairro'] = Util.formatString(request.json['bairro'])
@@ -107,7 +107,7 @@ class AlterarUnidades(Resource):
 		command = (
 			"update unidades_prisionais up set " +
 				"up.nome = " + unidade['nome'] + ", " +
-				"up.endereco.tipo_logadouro = " + unidade['tipo_logradouro'] + ", " +
+				"up.endereco.tipo_logadouro = " + unidade['tipo_logadouro'] + ", " +
 				"up.endereco.logradouro = " + unidade['logradouro'] + ", " +
 				"up.endereco.numero = " + unidade['numero'] + ", " +
 				"up.endereco.bairro = " + unidade['bairro'] + ", " +
