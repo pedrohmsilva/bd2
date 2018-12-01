@@ -91,6 +91,8 @@ class BuscarServidores(Resource):
 			del resultado[i]['..uf']
 			del resultado[i]['..cep']
 
+			resultado[i]['data_nascimento'] = resultado[i]['data_nascimento'][:-9]
+
 		return resultado
 
 

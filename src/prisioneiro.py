@@ -100,6 +100,7 @@ class BuscarPrisioneiros(Resource):
 			del resultado[i]['capacidade']
 			del resultado[i]['tipo']
 
+			resultado[i]['data_nascimento'] = resultado[i]['data_nascimento'][:-9]
 			resultado[i]['observacoes_medicas'] = self.getObservacoesMedicas(resultado[i]['cpf'])
 			resultado[i]['familiares'] = self.getFamiliares(resultado[i]['cpf'])
 
@@ -250,7 +251,7 @@ class RemoverPrisioneiros(Resource):
 		cpf = str(request.json['cpf'])
 
 		command = (
-			"delete from servidores s where" +
+			"delete from prisioneiros s where" +
 			" s.cpf = " + cpf
 		)
 
