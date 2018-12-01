@@ -46,7 +46,10 @@ class BuscarUnidades(Resource):
 		
 		for i in range(len(resultado)):
 			resultado[i]['num'] = resultado[i]['numero']
+			resultado[i]['tipo_logradouro'] = resultado[i]['tipo_logadouro']
+			
 			del resultado[i]['numero']
+			del resultado[i]['tipo_logadouro']
 		
 		return resultado
 
