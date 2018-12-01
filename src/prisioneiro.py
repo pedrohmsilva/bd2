@@ -148,27 +148,31 @@ class CriarPrisioneiros(Resource):
 
 		cela = str(request.json['fk_cela'])
 		observacoes_medicas = request.json['observacoes_medicas']
-		familiares = request.json['familiares']
+		# familiares = request.json['familiares']
 
-		familiares_string = "Familiares_NT("
-		for i in range(len(familiares)):
-			familiares_string = (familiares_string +
-				"Familiar_TY (" +
-					str(request.json['familiares'][i]['cpf']) + ", " +
-					Util.formatString(request.json['familiares'][i]['rg']) + ", " +
-					Util.formatString(request.json['familiares'][i]['nome']) + ", " +
-					"to_date('" + request.json['familiares'][i]['data_nascimento'] + "', 'yyyy-mm-dd'), " +
-					Util.formatString(request.json['familiares'][i]['parentesco']) +
-				"), "
-			)
-		familiares_string = familiares_string[:-2]
-		familiares_string = familiares_string + ")"
+		# if (len(familiares) > 0):
+		# 	familiares_string = "Familiares_NT("
+		# 	for i in range(len(familiares)):
+		# 		familiares_string = (familiares_string +
+		# 			"Familiar_TY (" +
+		# 				str(request.json['familiares'][i]['cpf']) + ", " +
+		# 				Util.formatString(request.json['familiares'][i]['rg']) + ", " +
+		# 				Util.formatString(request.json['familiares'][i]['nome']) + ", " +
+		# 				"to_date('" + request.json['familiares'][i]['data_nascimento'] + "', 'yyyy-mm-dd'), " +
+		# 				Util.formatString(request.json['familiares'][i]['parentesco']) +
+		# 			"), "
+		# 		)
+		# 	familiares_string = familiares_string[:-2]
+		# 	familiares_string = familiares_string + ")"
 
-		observacoes_string = "Observacoes_Medicas_NT("
-		for observacao in observacoes_medicas:
-			observacoes_string = observacoes_string + Util.formatString(observacao) + ", "
-		observacoes_string = observacoes_string[:-2]
-		observacoes_string = observacoes_string + ")"
+		if (len(observacoes_medicas) > 0):
+			observacoes_string = "Observacoes_Medicas_NT("
+			for observacao in observacoes_medicas:
+				observacoes_string = observacoes_string + Util.formatString(observacao) + ", "
+			observacoes_string = observacoes_string[:-2]
+			observacoes_string = observacoes_string + ")"
+		else:
+			observacoes_string = "null"
 		
 		command = (
 			"insert into prisioneiros values (" +
@@ -178,11 +182,11 @@ class CriarPrisioneiros(Resource):
 					nome + ", " +
 					data_nascimento + ", " +
 					"(select ref(c) from celas c where c.codigo = " + cela + "), " +
-					observacoes_string + ", " +
-					familiares_string +
-				")" +
-			")"
+					observacoes_string + ", "
+					"null"
         )
+
+		command = command + "))"
 
 		return conn.update(command)
 
@@ -195,24 +199,24 @@ class AlterarPrisioneiros(Resource):
 		rg = Util.formatString(request.json['rg'])
 		nome = Util.formatString(request.json['nome'])
 		data_nascimento = "to_date('" + request.json['data_nascimento'] + "', 'yyyy-mm-dd')"
-		cela = request.json['fk_cela']
+		cela = str(request.json['fk_cela'])
 		observacoes_medicas = request.json['observacoes_medicas']
-		familiares = request.json['familiares']
+		# familiares = request.json['familiares']
 
-		if (len(familiares) > 0):
-			familiares_string = "Familiares_NT("
-			for i in range(len(familiares)):
-				familiares_string = (familiares_string +
-					"Familiar_TY (" +
-						str(request.json['familiares'][i]['cpf']) + ", " +
-						Util.formatString(request.json['familiares'][i]['rg']) + ", " +
-						Util.formatString(request.json['familiares'][i]['nome']) + ", " +
-						"to_date('" + request.json['familiares'][i]['data_nascimento'] + "', 'yyyy-mm-dd'), " +
-						Util.formatString(request.json['familiares'][i]['parentesco']) +
-					"), "
-				)
-			familiares_string = familiares_string[:-2]
-			familiares_string = familiares_string + ")"
+		# if (len(familiares) > 0):
+		# 	familiares_string = "Familiares_NT("
+		# 	for i in range(len(familiares)):
+		# 		familiares_string = (familiares_string +
+		# 			"Familiar_TY (" +
+		# 				str(request.json['familiares'][i]['cpf']) + ", " +
+		# 				Util.formatString(request.json['familiares'][i]['rg']) + ", " +
+		# 				Util.formatString(request.json['familiares'][i]['nome']) + ", " +
+		# 				"to_date('" + request.json['familiares'][i]['data_nascimento'] + "', 'yyyy-mm-dd'), " +
+		# 				Util.formatString(request.json['familiares'][i]['parentesco']) +
+		# 			"), "
+		# 		)
+		# 	familiares_string = familiares_string[:-2]
+		# 	familiares_string = familiares_string + ")"
 
 		if (len(observacoes_medicas) > 0):
 			observacoes_string = "Observacoes_Medicas_NT("
@@ -220,6 +224,8 @@ class AlterarPrisioneiros(Resource):
 				observacoes_string = observacoes_string + Util.formatString(observacao) + ", "
 			observacoes_string = observacoes_string[:-2]
 			observacoes_string = observacoes_string + ")"
+		else:
+			observacoes_string = "null"
 		
 		command = (
 			"update prisioneiros set " +
@@ -233,9 +239,7 @@ class AlterarPrisioneiros(Resource):
 			command = (command + ", " +
 				"observacoes_medicas = " + observacoes_string)
 		
-		if (len(familiares_string) > 0):
-			command = (command + ", " +
-				"familiares = " + familiares_string)
+		command = command + " where cpf = " + cpf
 
 		return conn.update(command)
 
