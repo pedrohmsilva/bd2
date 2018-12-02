@@ -153,7 +153,7 @@ class AlterarCelas(Resource):
 		conn = Connection()
 
 		try:
-			codigo_unidade = str(request.json['fk_codigo_unidade'])
+			codigo_unidade = str(request.json['codigo_unidade'])
 			numero_pavilhao = str(request.json['fk_numero_pavilhao'])
 			numero_bloco = str(request.json['fk_numero_bloco'])
 		except:
@@ -183,7 +183,7 @@ class RemoverCelas(Resource):
 	def post(self):
 		conn = Connection()
 
-		codigo_unidade = str(request.json['fk_codigo_unidade'])
+		codigo_unidade = str(request.json['codigo_unidade'])
 		numero_pavilhao = str(request.json['fk_numero_pavilhao'])
 		numero_bloco = str(request.json['fk_numero_bloco'])
 		codigo_cela = str(request.json['codigo'])
