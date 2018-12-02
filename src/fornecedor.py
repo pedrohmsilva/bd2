@@ -54,22 +54,13 @@ class CriarFornecedor(Resource):
 
         cnpj = str(request.json['cnpj'])
         nome_empresa = Util.formatString(request.json['nome_empresa'])
-
-        itens = request.json['itens']
-
-        itens_string = "Item_NT("
-
-        for item in itens:
-            itens_string = itens_string + Util.formatString(item) + ", "
-        itens_string = itens_string[:-2]
-        itens_string = itens_string + ")"
+        item = Util.formatString(request.json['item'])
 
         command = (
                 "insert into fornecedores values (" +
                 cnpj + ", " +
                 nome_empresa + ", " +
-                itens_string+
-                ")"
+                item+")"
         )
 
         return conn.update(command)
@@ -81,25 +72,16 @@ class AlterarFornecedores(Resource):
         cnpj = str(request.json['cnpj'])
 
         nome_empresa = Util.formatString(request.json['nome_empresa'])
-        itens = request.json['itens']
+        item = Util.formatString(request.json['item'])
 
-        if (len(itens) > 0):
-            itens_string = "Item_NT("
-            for item in itens:
-                itens_string = itens_string + Util.formatString(item) + ", "
-            itens_string = itens_string[:-2]
-            itens_string = itens_string + ")"
 
         command = (
                 "update fornecedores set " +
-                "nome_empresa = " + nome_empresa
+                "nome_empresa = " + nome_empresa + ", "+
+                "item = "+item+
+                " where cnpj="+cnpj
         )
 
-        if (len(itens_string) > 0):
-            command = (command + ", " +
-                       "itens = " + itens_string)
-
-        command += " where cnpj= "+cnpj
         return conn.update(command)
 
 class RemoverFornecedores(Resource):
