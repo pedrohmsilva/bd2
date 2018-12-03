@@ -14,7 +14,7 @@ class Util:
 			'prisioneiro': ['cpf', 'rg', 'nome', 'data_nascimento'],
 			'familiar': ['cpf', 'rg', 'nome', 'data_nascimento', 'parentesco'],
 			'cumprimento_pena': ['codigo', 'data_inicio', 'data_termino'],
-			'fornecedor': ['cnpj', 'nome_empresa']
+			'fornecedor': ['cnpj', 'nome_empresa','item']
 		}
 
 		string = ''

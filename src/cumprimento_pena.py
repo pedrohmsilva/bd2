@@ -100,6 +100,9 @@ class BuscarCumprimentoPenas(Resource):
 			del resultado[i]['prisioneiro.nome']
 			del resultado[i]['prisioneiro.data_nascimento']
 
+			resultado[i]['data_inicio'] = resultado[i]['data_nascimento'][:-9]
+			resultado[i]['data_termino'] = resultado[i]['data_nascimento'][:-9]
+
 		return resultado
 
 class CriarCumprimentoPenas(Resource):
