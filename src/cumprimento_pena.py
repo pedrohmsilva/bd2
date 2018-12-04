@@ -88,6 +88,8 @@ class BuscarCumprimentoPenas(Resource):
 			resultado[i]['rg'] = resultado[i]['prisioneiro.rg']
 			resultado[i]['nome'] = resultado[i]['prisioneiro.nome']
 			resultado[i]['data_nascimento'] = resultado[i]['prisioneiro.data_nascimento']
+			resultado[i]['data_inicio'] = resultado[i]['data_inicio'][:-9]
+			resultado[i]['data_termino'] = resultado[i]['data_termino'][:-9]
 
 			del resultado[i]['crime.codigo_penal']
 			del resultado[i]['crime.area_penal']
@@ -99,9 +101,6 @@ class BuscarCumprimentoPenas(Resource):
 			del resultado[i]['prisioneiro.rg']
 			del resultado[i]['prisioneiro.nome']
 			del resultado[i]['prisioneiro.data_nascimento']
-
-			resultado[i]['data_inicio'] = resultado[i]['data_nascimento'][:-9]
-			resultado[i]['data_termino'] = resultado[i]['data_nascimento'][:-9]
 
 		return resultado
 
